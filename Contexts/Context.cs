@@ -34,11 +34,11 @@ namespace Bibliotec.Contexts
                 //A string de conexao do banco de dados:
                 // data source => nome do servidor do banco de dados
                 // initial catalog => nome do banco de dados
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-289EKCI\\SQLEXPRESS02;
+                optionsBuilder.UseSqlServer(@"Data Source=NOTE45-S28\SQLEXPRESS2;
                 Initial Catalog = Bibliotec_mvc ;
                 User Id=sa;
                 Password=123;
-                Integrated Security=true;
+
                 TrustServerCertificate = true");
             }
             base.OnConfiguring(optionsBuilder);
