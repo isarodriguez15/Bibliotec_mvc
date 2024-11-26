@@ -2,50 +2,56 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bibliotec.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace Bibliotec.Contexts
 {
-    
-     // Classe que tera as informacoes do banco de dados
+        // classe que tera as informacoes do banco de dados
     public class Context : DbContext
     {
-        // Criar um metodo construtor
+        // criar um metodo construtor
         public Context(){
 
         }
-        public Context(DbContextOptions<Context> options) : base(options) { 
+
+        public Context(DbContextOptions<Context> options) : base(options){
+
         }
         // OnConfiguring -> Possui a configuracao da conexao com
-        // o banco de dados
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
+        //o banco de dados
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+
+        
+
     
+        {
             // colocar as informacoes do banco
-            // As configuracoes existem?
-            if(optionsBuilder.IsConfigured){
-                // A string de conexao do banco de dados:
-                // Data Source => Nome do servidor do banco de dados
-                // Initial Catalog => Nome do banco de dados
-                // User Id e Password => Informacoes de acesso ao servidor do banco de dados
-                optionsBuilder.UseSqlServer(@"Data
-                Source=NOTE45-S28\\SQLEXPRESS2;  Initial
-                Catalog = ; User Id=sa; Password=123;
+            // As informacoes existem?
+            if(!optionsBuilder.IsConfigured){
+                //A string de conexao do banco de dados:
+                // data source => nome do servidor do banco de dados
+                // initial catalog => nome do banco de dados
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-289EKCI\\SQLEXPRESS02;
+                Initial Catalog = Bibliotec_mvc ;
+                User Id=sa;
+                Password=123;
                 Integrated Security=true;
-                TrustSeverCertificate = true");
+                TrustServerCertificate = true");
             }
+            base.OnConfiguring(optionsBuilder);
+            
         }
-    // As referencias das nossas tabelas no banco de dados:
-          public DbSet<Categoria> Categoria { get; set; }
-          // Curso
-          public DbSet<Curso> Curso { get; set; }
-          // Livro
-           public DbSet<Livro> Livro { get; set; }
-          // Usuario
-           public DbSet<Usuario> Usuario { get; set; }
-          // LivroCategoria
-           public DbSet<LivroCategoria> LivroCategoria { get; set; }
-          // LivroReserva
-           public DbSet<LivroReserva> LivroReserva { get; set; }
-    }    
+    
+        // as referencias das nossas tabelas no banco de dados:
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Livro> Livro { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<LivroCategoria> livroCategoria { get; set; }
+        public DbSet<LivroReserva> LivroReserva { get; set; }
+        
+
+    }
 }
